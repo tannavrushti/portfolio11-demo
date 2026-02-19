@@ -1,75 +1,69 @@
-
 //Log in
 function login() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    let email = document.getElementById("liemail").value;
+    let password = document.getElementById("lipassword").value;
+    let storedUser = JSON.parse(localStorage.getItem("user"));
 
-    const savedEmail = localStorage.getItem("userEmail");
-    const savedPassword = localStorage.getItem("userPassword");
-
-    if (email === savedEmail && password === savedPassword) {
+    if (!storedUser) {
+        alert("No user found,please signup");
+        return;
+    }
+    if (email === storedUser.email && password === storedUser.password) {
         localStorage.setItem("isLoggedIn", "true");
-        alert("Login Successful!");
-        window.location.href = "index.html";
+        window.location = "log.html";
     } else {
         alert("Invalid Credentials");
     }
 }
 
 //sign up
-function signup() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+document.getElementById("signupForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    localStorage.setItem("userEmail", "-tanna123@gmail.com");
-    localStorage.setItem("userPassword", "123456");
+    let name = document.getElementById("Name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
 
+    localStorage.setItem("userEmail", "abc3@gmail.com");
+    localStorage.setItem("userPassword", 789456);
+
+
+    if (name == "" || email == "" || password == "") {
+        alert("please fill all fields");
+        return;
+    }
+
+    let user = {
+        name: "name",
+        email: "email",
+        password: "password"
+
+    };
+    localStorage.setItem("userData", JSON.stringify(user));
     alert("Signup Successful!");
-    window.location.href = "login.html";
-}
 
-//navbar 
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-const loginLink = document.getElementById("loginLink");
-const signupLink = document.getElementById("signupLink");
-const logoutLink = document.getElementById("logoutLink");
-
-if (isLoggedIn === "true") {
-    loginLink.classList.add("hidden");
-    signupLink.classList.add("hidden");
-    logoutLink.classList.remove("hidden");
-}
-
-//logout
-logoutLink.addEventListener("click", function () {
-    localStorage.removeItem("isLoggedIn");
-
-    loginLink.classList.remove("hidden");
-    signupLink.classList.remove("hidden");
-    logoutLink.classList.add("hidden");
-
-    alert("Logged Out Successfully");
-
-    window.location.reload();
+    window.location = "login.html";
 });
-//contact
-function sendMessage() {
 
-    const name = document.querySelector('input[type="text"]').value.trim();
-    const email = document.querySelector('input[type="email"]').value.trim();
-    const message = document.querySelector("textarea").value.trim();
+//CHECK LOGIN
+window.onload = function () {
+    let path = window.location.pathname;
 
-    if (name === "" || email === "" || message === "") {
-        alert("⚠ Please fill all fields!");
-        return;
+    if (path.includes("dashboard.html")) {
+        let logged = localStorage.getItem("isLoggedIn");
+        if (logged !== "true") {
+            alert("Please login first");
+            window.location = "login.html";
+        } else {
+            let user = JSON.parse(localStorage.getItem("user"));
+            document.getElementById("userDisplay").innerText = "Hi " + user.name;
+        }
     }
-
-    if (!validateEmail(email)) {
-        alert("⚠ Enter valid email address!");
-        return;
-    }
-
-    alert("✅ Message Sent Successfully 🚀");
-
 }
 
+// LOGOUT
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    alert("Logout successful");
+    window.location = "login.html";
+}
