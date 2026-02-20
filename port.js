@@ -50,21 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//CHECK LOGIN
-window.onload = function () {
-    let path = window.location.pathname;
 
-    if (path.includes("dashboard.html")) {
-        let logged = localStorage.getItem("isLoggedIn");
-        if (logged !== "true") {
-            alert("Please login first");
-            window.location = "login.html";
-        } else {
-            let user = JSON.parse(localStorage.getItem("user"));
-            document.getElementById("userDisplay").innerText = "Hi " + user.name;
-        }
-    }
-}
 
 // LOGOUT
 function logout() {
