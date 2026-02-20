@@ -4,46 +4,51 @@ function login() {
     let password = document.getElementById("lipassword").value;
     let storedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (!storedUser) {
-        alert("No user found,please signup");
-        return;
-    }
+
     if (email === storedUser.email && password === storedUser.password) {
         localStorage.setItem("isLoggedIn", "true");
-        window.location = "log.html";
+        window.location = "log.html"
+
     } else {
-        alert("Invalid Credentials");
+        alert("Invalid data");
     }
 }
 
 //sign up
-document.getElementById("signupForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    let form = document.getElementById("signupForm");
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    let name = document.getElementById("Name").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    localStorage.setItem("userEmail", "abc3@gmail.com");
-    localStorage.setItem("userPassword", 789456);
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
 
 
-    if (name == "" || email == "" || password == "") {
-        alert("please fill all fields");
-        return;
+            if (name == "" || email == "" || password == "") {
+                alert("please fill all fields");
+                return;
+            }
+
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userpassword", password);
+
+
+
+            let user = {
+                name: name,
+                email: email,
+                password: password
+            };
+            localStorage.setItem("userData", JSON.stringify("user"));
+            alert("Signup Successful!");
+
+            window.location = "login.html";
+        });
     }
-
-    let user = {
-        name: "name",
-        email: "email",
-        password: "password"
-
-    };
-    localStorage.setItem("userData", JSON.stringify(user));
-    alert("Signup Successful!");
-
-    window.location = "login.html";
 });
+
 
 //CHECK LOGIN
 window.onload = function () {
