@@ -24,12 +24,12 @@
         <nav class=" flex items-center justify-between bg-grey-500 px-6 py-4 font-bold">
 
             <ul class="flex space-x-8 ml-auto">
-                <li><a href="#">Home</a></li>
-                <li><a href="#about" class="curs--or-pointer">About</a></li>
+                <li>Home</li>
+                <li>About</li>
                 <li id="authlinks"><a href="login.html" class="cursor-pointer">Login-</a></li>
-                <li id="authlinkss"><a href="signup.html" class="cursor-pointer">Signup</a></li>
-                <li><a href="#">Skills</a></li>
-                <li><a href="#">Contact</a></li>
+                <li id="authlinks"><a href="signup.html" class="cursor-pointer">Signup</a></li>
+                <li>Skills</li>
+                <li>Contact</li>
                 <!---Logout--->
                 <li id="logoutbtn" class="hidden">
                     <a href="#" id="logoutlink">Logout</a>
@@ -45,10 +45,10 @@
 
         <!----Left content------>
         <div>
-            <div class="flex flex-col items-end">
+            <div class="flex flex-col">
                 <!-- profile Image -->
                 <div class=" flex mr-auto">
-                    <img src="./images/pro.png" class="w-[400px] rounded-xl" alt="profile">
+                    <img src="./images/pro.png" class="w-[400px] " alt="profile">
                 </div>
 
             </div>
@@ -94,7 +94,7 @@
         <div>
 
             <div class="min-screen flex item-center justify-center h-100">
-                <div class="bg-sky-300 px-6 py-4 rounded-2xl text-center">
+                <div class="bg-sky-300 px-6 py-4 text-center">
                     <h1 class="text-6xl md:text-4xl font-bold text-white">
                         HI i'm Vrushti Tanna
                     </h1>
@@ -124,7 +124,7 @@
 
     <!------About Section-->
     <section class="min-h-screen flex item-center justify-center p-6">
-        <div class="bg-white rounded-xl max-w-5xl w-full p-10">
+        <div class="bg-white  max-w-5xl w-full p-10">
             <div class="grid md:grid-cols-2 gap-10 items-center">
                 <!---left content--->
                 <div>
@@ -217,7 +217,7 @@
     <!-- ================= Contact Me ================= -->
     <section id="contact" class="bg-gray-400 py-16 px-6 max-w-4xl mx-auto outline-black-900 text-center">
 
-        <div class=" px-8 py-3 rounded-full mb-10">
+        <div class=" px-8 py-3 mb-10">
             <h1 class="text-center text-4xl font-bold">
                 Contact Me
             </h1>
@@ -226,8 +226,10 @@
         <div class="max-w-xl mx-auto bg-white shadow-xl rounded-2xl p-8">
             <form class="space-y-6">
 
+
                 <div class="grid md:grid-cols-2 gap-6">
                     <input type="text" placeholder="Your Name" class=" p-3 rounded outline-black-500">
+                    <br>
 
                     <input type="email" placeholder="Your Email" class=" p-3 rounded">
                 </div>
@@ -236,7 +238,7 @@
                     class="w-full  p-3 rounded mt-6 h-32 outline-black-500 "></textarea>
 
                 <button onclick="sendMessage()"
-                    class=" px-8 py-3 rounded-xl outline-black-900 font-semibold mt-6  text-black">
+                    class=" px-8 py-3 rounded-xl outline-black-500 font-semibold mt-6  text-black">
                     Send Message
                 </button>
             </form>

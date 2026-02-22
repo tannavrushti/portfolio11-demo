@@ -1,7 +1,7 @@
 //Log in
 document.addEventListener("DOMContentLoaded", function () {
-    let loginForm = document.getElementById("loginForm");
-    if (loginForm) {
+    let Form = document.getElementById("loginForm");
+    if (Form) {
         loginForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
             let user = {
                 name: name,
                 email: email,
@@ -68,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (logoutlink) {
         logoutlink.addEventListener("click", function () {
 
+
             localStorage.removeItem("isLoggedIn");
             alert("Logout Successful!");
             window.location.reload();
@@ -77,13 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
 //contact form
 function sendMessage() {
 
-    const name = document.querySelector('input[type="text"]').value;
-    const email = document.querySelector('input[type="email"]').value;
-    const message = document.querySelector("textarea").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
 
     if (name === "" || email === "" || message === "") {
         alert(" Please fill all fields!");
-        return;
+
     }
     alert("Message Sent Successfully!");
 
