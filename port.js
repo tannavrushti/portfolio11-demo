@@ -1,19 +1,27 @@
 //Log in
-function login() {
-    let email = document.getElementById("liemail").value;
-    let password = document.getElementById("lipassword").value;
-    let storedUser = JSON.parse(localStorage.getItem("user"));
+document.addEventListener("DOMContentLoaded", function () {
+    let loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let email = document.getElementById("liemail").value;
+            let password = document.getElementById("lipassword").value;
+
+            let savedUser = JSON.parse(localStorage.getItem("user"));
 
 
-    if (email === storedUser.email && password === storedUser.password) {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location = "log.html"
+            if (savedUser && email === savedUser.email && password === savedUser.password) {
+                localStorage.setItem("isLoggedIn", "true");
+                alert("Login Successful!");
+                window.location.href = "index.html";
 
-    } else {
-        alert("Invalid data");
+            } else {
+                alert("Invalid data");
+            }
+        });
     }
-}
-
+});
 //sign up
 document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("signupForm");
@@ -31,30 +39,57 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            localStorage.setItem("userEmail", email);
-            localStorage.setItem("userpassword", password);
-
-
 
             let user = {
                 name: name,
                 email: email,
                 password: password
             };
-            localStorage.setItem("userData", JSON.stringify("user"));
+            localStorage.setItem("user", JSON.stringify(user));
             alert("Signup Successful!");
 
-            window.location = "login.html";
+            window.location.href = "login.html";
         });
     }
 });
 
-
-
-
 // LOGOUT
-function logout() {
-    localStorage.removeItem("isLoggedIn");
-    alert("Logout successful");
-    window.location = "login.html";
+document.addEventListener("DOMContentLoaded", function () {
+    let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    let authlinks = document.getElementById("authlinks");
+    let logoutBtn = document.getElementById("logoutbtn");
+
+    if (isLoggedIn === "true") {
+        authlinks.classList.add("hidden");
+        logoutBtn.classList.remove("hidden");
+    }
+    let logoutlink = document.getElementById("logoutlink");
+    if (logoutlink) {
+        logoutlink.addEventListener("click", function () {
+
+            localStorage.removeItem("isLoggedIn");
+            alert("Logout Successful!");
+            window.location.reload();
+        });
+    }
+});
+//contact form
+function sendMessage() {
+
+    const name = document.querySelector('input[type="text"]').value;
+    const email = document.querySelector('input[type="email"]').value;
+    const message = document.querySelector("textarea").value;
+
+    if (name === "" || email === "" || message === "") {
+        alert(" Please fill all fields!");
+        return;
+    }
+    alert("Message Sent Successfully!");
+
+    // Reset form
+    document.querySelector("input[type='text']").value = "";
+    document.querySelector("input[type='email']").value = "";
+    document.querySelector("textarea").value = "";
 }
+
