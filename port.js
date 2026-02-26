@@ -56,15 +56,18 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     let isLoggedIn = localStorage.getItem("isLoggedIn");
 
-    let authlinks = document.getElementById("authlinks");
-    let logoutBtn = document.getElementById("logoutbtn");
+    let authLinks = document.getElementById("authLinks");
+    let logoutBtn = document.getElementById("logoutBtn");
 
     if (isLoggedIn === "true") {
-        authlinks.classList.add("hidden");
+        authLinks.classList.add("hidden");
         logoutBtn.classList.remove("hidden");
+    }else {
+        authLinks.classList.remove("hidden");
+        logoutBtn.classList.add("hidden");
     }
-    let logoutlink = document.getElementById("logoutlink");
-    if (logoutlink) {
+     let logoutlink = document.getElementById("logoutlink");
+     
         logoutlink.addEventListener("click", function () {
 
 
@@ -72,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Logout Successful!");
             window.location.reload();
         });
-    }
+    
 });
 //contact form
 function sendMessage() {
